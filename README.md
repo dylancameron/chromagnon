@@ -1,4 +1,4 @@
-# Hexadaisical
+# Chromagnon
 
 A Chrome side-panel color picker. Pick any pixel on your screen (even outside the browser), copy it as HEX, RGB, HSL or OKLCH, collect colors into palettes, and check WCAG contrast.
 
@@ -64,3 +64,7 @@ Permissions:
 - `sidePanel` for the side panel.
 - `clipboardWrite` so the copy fallback works without a fresh click.
 - A content script on all sites for the pick shortcut. It only listens for that one key combination.
+
+## Support
+
+Chromagnon is free, with no ads or accounts. If it's useful to you, you can [buy me a coffee](https://buymeacoffee.com/dylancameron) ☕

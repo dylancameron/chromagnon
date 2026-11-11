@@ -1,7 +1,7 @@
 import { Settings as SettingsIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import logo from "@/assets/hex.svg";
 import { ContrastView } from "@/components/contrast-view";
+import { Logo } from "@/components/logo";
 import { PalettesView } from "@/components/palettes-view";
 import { PickView } from "@/components/pick-view";
 import { SettingsView } from "@/components/settings-view";
@@ -19,7 +19,7 @@ import { historyItem } from "@/lib/storage";
 
 const TABS = ["pick", "palettes", "contrast", "settings"] as const;
 type Tab = (typeof TABS)[number];
-const TAB_KEY = "hexadaisical:tab";
+const TAB_KEY = "chromagnon:tab";
 
 function readTab(): Tab {
 	try {
@@ -102,8 +102,8 @@ export function App() {
 	return (
 		<div className="mx-auto flex min-h-screen max-w-md flex-col">
 			<header className="flex items-center gap-2 px-4 pt-4 pb-3">
-				<img src={logo} alt="" className="size-5" />
-				<h1 className="text-sm font-semibold tracking-tight">Hexadaisical</h1>
+				<Logo className="-my-1 size-8" />
+				<h1 className="text-base font-semibold tracking-tight">Chromagnon</h1>
 			</header>
 
 			<Tabs value={tab} onValueChange={changeTab} className="flex-1 px-4 pb-20">

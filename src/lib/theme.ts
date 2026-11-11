@@ -2,7 +2,7 @@ export type ThemePreference = "system" | "light" | "dark";
 
 // localStorage rather than storage.local: it's synchronous, so the side panel
 // can apply the theme before React's first paint and never flashes.
-const KEY = "hexadaisical:theme";
+const KEY = "chromagnon:theme";
 
 export function getThemePreference(): ThemePreference {
 	try {

@@ -6,7 +6,7 @@ export default defineConfig({
 	modules: ["@wxt-dev/module-react"],
 	srcDir: "src",
 	manifest: {
-		name: "Hexadaisical",
+		name: "Chromagnon",
 		description:
 			"Pick any color on screen, copy it as HEX, RGB, HSL or OKLCH, save palettes, and check contrast.",
 		// chrome.sidePanel.setPanelBehavior landed in Chrome 116.
@@ -14,7 +14,7 @@ export default defineConfig({
 		// `sidePanel` is added automatically by WXT for the sidepanel entrypoint.
 		// `clipboardWrite` lets the execCommand fallback copy without a fresh gesture.
 		permissions: ["storage", "clipboardWrite"],
-		action: { default_title: "Open Hexadaisical" },
+		action: { default_title: "Open Chromagnon" },
 	},
 	vite: () => ({
 		plugins: [tailwindcss()],

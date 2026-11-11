@@ -60,7 +60,7 @@ export default defineContentScript({
 							: { message: "Saved to history, couldn't copy:", value: hex, color: hex },
 					);
 				} catch (err) {
-					console.error("[Hexadaisical]", err);
+					console.error("[Chromagnon]", err);
 					showPageToast({ message: "Couldn't open the eyedropper here" });
 				} finally {
 					picking = false;

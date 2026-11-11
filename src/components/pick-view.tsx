@@ -1,5 +1,6 @@
 import { Check, Copy, Pipette, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Logo } from "@/components/logo";
 import { SaveToPaletteMenu } from "@/components/save-to-palette-menu";
 import { Swatch } from "@/components/swatch";
 import { useCopy, useToast } from "@/components/toast";
@@ -127,7 +128,8 @@ export function PickView({
 function ColorHero({ hex }: { hex: string | null }) {
 	if (!hex) {
 		return (
-			<div className="flex h-32 flex-col items-center justify-center gap-1 rounded-xl border border-dashed px-6 text-center">
+			<div className="flex h-32 flex-col items-center justify-center gap-0.5 rounded-xl border border-dashed px-6 text-center">
+				<Logo className="mb-0.5 size-11" />
 				<p className="text-sm font-medium">No color yet</p>
 				<p className="text-xs text-balance text-muted-foreground">
 					Pick any pixel on your screen, even outside the browser.

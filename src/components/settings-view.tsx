@@ -1,4 +1,4 @@
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Coffee, Monitor, Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
@@ -24,6 +24,8 @@ interface SettingsViewProps {
 	theme: ThemePreference;
 	onThemeChange: (theme: ThemePreference) => void;
 }
+
+const SUPPORT_URL = "https://buymeacoffee.com/dylancameron";
 
 const FORMAT_OPTIONS = COLOR_FORMATS.map((f) => ({
 	value: f,
@@ -84,7 +86,32 @@ export function SettingsView({
 					onChange={onThemeChange}
 				/>
 			</Section>
+
+			<Support />
 		</div>
+	);
+}
+
+function Support() {
+	return (
+		<footer className="flex flex-col gap-3 border-t pt-5">
+			<div className="flex items-center justify-between gap-4 rounded-lg bg-muted/60 p-3">
+				<p className="text-xs text-pretty text-muted-foreground">
+					Chromagnon is free, with no ads or accounts. If it's useful to
+					you, a coffee helps keep it that way.
+				</p>
+				<Button asChild size="sm" variant="outline" className="shrink-0">
+					<a href={SUPPORT_URL} target="_blank" rel="noopener noreferrer">
+						<Coffee />
+						Buy me a coffee
+						<span className="sr-only">(opens in a new tab)</span>
+					</a>
+				</Button>
+			</div>
+			<p className="text-center text-[11px] text-muted-foreground">
+				Chromagnon {browser.runtime.getManifest().version}
+			</p>
+		</footer>
 	);
 }
 

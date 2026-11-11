@@ -45,7 +45,7 @@ let hideTimer: number | undefined;
 function mount() {
 	if (elements?.host.isConnected) return elements;
 
-	const host = document.createElement("hexadaisical-toast");
+	const host = document.createElement("chromagnon-toast");
 	host.style.cssText =
 		"all: initial !important; position: fixed !important; z-index: 2147483647 !important; left: 50% !important; bottom: 24px !important; transform: translateX(-50%) !important; pointer-events: none !important;";
 
