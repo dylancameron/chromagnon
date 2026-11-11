@@ -29,6 +29,14 @@ pnpm dev
 | `pnpm test`    | Unit tests (Vitest) for color math, contrast, palettes, shortcuts |
 | `pnpm compile` | Type-check with `tsc --noEmit`                                    |
 
+Unit tests cover `src/lib` only. UI changes are checked by hand in `pnpm dev`. [CLAUDE.md](CLAUDE.md) has the checklist, along with the codebase's conventions and the rules that keep it working.
+
+### Release
+
+1. Bump `version` in `package.json`. WXT copies it into the manifest, and Settings shows it.
+2. Run `pnpm test && pnpm compile && pnpm zip`.
+3. Upload the zip from `.output/` to the Chrome Web Store.
+
 ## How it fits together
 
 ```text
