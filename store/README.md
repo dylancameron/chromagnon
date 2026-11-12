@@ -5,7 +5,8 @@ Everything the Chrome Web Store dashboard asks for, so the listing can be rebuil
 | File | What it is |
 | --- | --- |
 | `promo-small.png` | Small promo tile, 440×280. Rendered from `promo-small.svg` (see below). |
-| `screenshots/` | Listing screenshots, 1280×800. |
+| `promo-marquee.png` | Marquee promo tile, 1400×560. Optional; only used if the store features Chromagnon in its homepage carousel. Rendered from `promo-marquee.svg`. |
+| `screenshots/` | Listing screenshots, 1280×800, numbered in upload order. The first is the one the store shows largest. |
 | `demo.html` | A colorful page to pick from in screenshots. It's our own artwork, so the listing doesn't show anyone else's site. |
 
 The store icon is `public/icon/128.png`. The dashboard needs it uploaded separately even though it's in the zip.
@@ -14,7 +15,7 @@ The store icon is `public/icon/128.png`. The dashboard needs it uploaded separat
 
 Name and summary come from the manifest (`wxt.config.ts`). The summary limit is 132 characters.
 
-**Description**
+### Description
 
 ```text
 Chromagnon is a color picker that lives in Chrome's side panel. Pick any pixel on your screen, copy it as HEX, RGB, HSL or OKLCH, save colors into palettes, and check WCAG contrast.
@@ -61,31 +62,31 @@ The repo has no license, so the description doesn't call it open source.
 
 ## Privacy practices tab
 
-**Single purpose**
+### Single purpose
 
 ```text
 Chromagnon is a color picker. It lets users pick a color from anywhere on screen with Chrome's built-in eyedropper, then use that color: copy it as HEX, RGB, HSL or OKLCH, save it to a palette, or check its contrast against another color.
 ```
 
-**sidePanel**
+### sidePanel
 
 ```text
 Chromagnon's entire interface is a side panel, opened by clicking the toolbar icon. A side panel is used instead of a popup because a popup can close when the eyedropper takes focus, which would lose the user's pick.
 ```
 
-**storage**
+### storage
 
 ```text
 Saves the user's settings (copy format and keyboard shortcut), their last 24 picked colors, their palettes, and the two colors in the contrast checker, using chrome.storage.local. The side panel and the content script share this data, so a color picked with the on-page shortcut appears in the open panel. Nothing is synced or sent off the device.
 ```
 
-**clipboardWrite**
+### clipboardWrite
 
 ```text
 Picking a color copies it to the clipboard in the user's chosen format. When the pick is made with the on-page shortcut, the page can lose focus while the eyedropper is open, and navigator.clipboard.writeText may then be refused. clipboardWrite lets the document.execCommand("copy") fallback succeed in that case. The extension never reads the clipboard.
 ```
 
-**Host permission** (the content script on `<all_urls>`)
+### Host permission (the content script on `<all_urls>`)
 
 ```text
 The content script provides the optional keyboard shortcut (Alt+Shift+C by default) that picks a color on any page without opening the side panel. Chrome's EyeDropper API only opens in direct response to a user gesture, and chrome.commands shortcuts handled in the background service worker don't count as one, so the key press must be heard by a script in the page itself. The script only compares key presses with the user's shortcut. It doesn't read page content, doesn't record or transmit keystrokes, and makes no network requests. On a match it opens the eyedropper, copies the color, and shows a small confirmation in a closed shadow root so the page isn't affected. Users can turn the shortcut off in Settings.
@@ -94,6 +95,7 @@ The content script provides the optional keyboard shortcut (Alt+Shift+C by defau
 **Remote code:** "No, I am not using remote code." All JavaScript ships in the zip.
 
 **Data usage:** tick none of the data types, and tick all three certifications.
+
 - Not "User activity": the content script sees key presses but never stores or sends them.
 - Not "Website content": a picked color is a single pixel value that stays on the device.
 
@@ -105,35 +107,18 @@ Broad host access usually triggers an in-depth review, so expect the first revie
 
 Leave username and password blank. There's no account or login.
 
-**Additional instructions**
+### Additional instructions
+
+The box allows 500 characters, so this covers only what a reviewer can't work out alone: the shortcut and where it can't run.
 
 ```text
-No account, login or setup is needed, and the extension makes no network requests.
+No login or setup needed. The extension makes no network requests.
 
-1. Pick from the side panel
-- Click the Chromagnon toolbar icon (pin it from the Extensions menu if it's hidden). The side panel opens on the Pick tab.
-- Click "Pick a color", then click any pixel on screen. The color is copied to the clipboard as HEX, a "Copied #rrggbb" message appears, and the color fills the large swatch and appears under Recent.
-- Click HEX, RGB, HSL or OKLCH to copy that format instead.
-- Press Esc during a pick to cancel. Nothing happens and no error appears.
+1. Click the toolbar icon to open the side panel. Click "Pick a color", then any pixel. It's copied as HEX and added to Recent. Esc cancels.
 
-2. Pick on a web page with the shortcut
-- Open any regular https:// page. Tabs that were open before the extension was installed need a reload.
-- Press Alt+Shift+C (Option+Shift+C on macOS) and click a pixel. A "Copied #rrggbb" message appears at the bottom of the page, and the color appears under Recent in the side panel.
-- Chrome doesn't run extension scripts on chrome:// pages or the Chrome Web Store, so the shortcut does nothing there. That's expected.
+2. On any https page, press Alt+Shift+C (Option+Shift+C on Mac) and click a pixel. A "Copied" message appears on the page. Reload tabs opened before install. Chrome blocks this on chrome:// and Web Store pages.
 
-3. Palettes tab
-- Click "New palette" and type a name (Enter saves, Esc reverts).
-- Click + to add the current color, or use "Save to palette" on the Pick tab.
-- In the palette's … menu, "Copy as" offers CSS variables, Tailwind theme and JSON. "Delete palette" shows an Undo message.
-
-4. Contrast tab
-- Set a text and a background color by typing a hex value, using the color box, or using the eyedropper button. The ratio and AA/AAA results update. Swap switches the two colors.
-
-5. Settings (gear icon)
-- "Copy on pick" changes which format the next pick copies.
-- Click the shortcut to record a new one. Combinations without Alt, Ctrl or ⌘ are rejected. Reset restores the default.
-- Turn the shortcut off, and Alt+Shift+C stops working on pages.
-- Theme switches between System, Light and Dark.
+3. Palettes, Contrast and Settings (gear) need no setup.
 ```
 
 ## Distribution tab
@@ -172,14 +157,16 @@ The store wants 1280×800 (up to five), full bleed, showing the real extension.
    osascript -e 'tell application "Google Chrome" to set bounds of front window to {0, 40, 1280, 840}'
    ```
 
-5. Press ⌘⇧4, then Space, then ⌥-click the window to capture it without a shadow. Retina captures come out at 2560×1600, so scale them down: `sips -Z 1280 file.png`.
+5. Press ⌘⇧4, then Space, then ⌥-click the window to capture it without a shadow. Retina captures come out at 2560×1600, so scale them down: `sips -Z 1280 file.png`. macOS leaves the window's rounded corners transparent; the store wants square corners, so fill them before scaling (the shots here had the corners filled from neighboring pixels).
 
 Suggested set: Pick tab just after a pick; the on-page "Copied" message from the shortcut; Palettes; Contrast; one tab in dark theme.
 
-## Regenerating the promo tile
+## Regenerating the promo tiles
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
   --force-device-scale-factor=1 --window-size=440,280 \
   --screenshot="$PWD/store/promo-small.png" "file://$PWD/store/promo-small.svg"
 ```
+
+For the marquee, use `--window-size=1400,560` and the `promo-marquee` file names.
