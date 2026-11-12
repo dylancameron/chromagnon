@@ -108,33 +108,16 @@ Leave username and password blank. There's no account or login.
 
 ### Additional instructions
 
+The box allows 500 characters, so this covers only what a reviewer can't work out alone: the shortcut and where it can't run.
+
 ```text
-No account, login or setup is needed, and the extension makes no network requests.
+No login or setup needed. The extension makes no network requests.
 
-1. Pick from the side panel
-- Click the Chromagnon toolbar icon (pin it from the Extensions menu if it's hidden). The side panel opens on the Pick tab.
-- Click "Pick a color", then click any pixel on screen. The color is copied to the clipboard as HEX, a "Copied #rrggbb" message appears, and the color fills the large swatch and appears under Recent.
-- Click HEX, RGB, HSL or OKLCH to copy that format instead.
-- Press Esc during a pick to cancel. Nothing happens and no error appears.
+1. Click the toolbar icon to open the side panel. Click "Pick a color", then any pixel. It's copied as HEX and added to Recent. Esc cancels.
 
-2. Pick on a web page with the shortcut
-- Open any regular https:// page. Tabs that were open before the extension was installed need a reload.
-- Press Alt+Shift+C (Option+Shift+C on macOS) and click a pixel. A "Copied #rrggbb" message appears at the bottom of the page, and the color appears under Recent in the side panel.
-- Chrome doesn't run extension scripts on chrome:// pages or the Chrome Web Store, so the shortcut does nothing there. That's expected.
+2. On any https page, press Alt+Shift+C (Option+Shift+C on Mac) and click a pixel. A "Copied" message appears on the page. Reload tabs opened before install. Chrome blocks this on chrome:// and Web Store pages.
 
-3. Palettes tab
-- Click "New palette" and type a name (Enter saves, Esc reverts).
-- Click + to add the current color, or use "Save to palette" on the Pick tab.
-- In the palette's … menu, "Copy as" offers CSS variables, Tailwind theme and JSON. "Delete palette" shows an Undo message.
-
-4. Contrast tab
-- Set a text and a background color by typing a hex value, using the color box, or using the eyedropper button. The ratio and AA/AAA results update. Swap switches the two colors.
-
-5. Settings (gear icon)
-- "Copy on pick" changes which format the next pick copies.
-- Click the shortcut to record a new one. Combinations without Alt, Ctrl or ⌘ are rejected. Reset restores the default.
-- Turn the shortcut off, and Alt+Shift+C stops working on pages.
-- Theme switches between System, Light and Dark.
+3. Palettes, Contrast and Settings (gear) need no setup.
 ```
 
 ## Distribution tab
