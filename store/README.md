@@ -5,7 +5,7 @@ Everything the Chrome Web Store dashboard asks for, so the listing can be rebuil
 | File | What it is |
 | --- | --- |
 | `promo-small.png` | Small promo tile, 440×280. Rendered from `promo-small.svg` (see below). |
-| `screenshots/` | Listing screenshots, 1280×800. |
+| `screenshots/` | Listing screenshots, 1280×800, numbered in upload order. The first is the one the store shows largest. |
 | `demo.html` | A colorful page to pick from in screenshots. It's our own artwork, so the listing doesn't show anyone else's site. |
 
 The store icon is `public/icon/128.png`. The dashboard needs it uploaded separately even though it's in the zip.
@@ -14,7 +14,7 @@ The store icon is `public/icon/128.png`. The dashboard needs it uploaded separat
 
 Name and summary come from the manifest (`wxt.config.ts`). The summary limit is 132 characters.
 
-**Description**
+### Description
 
 ```text
 Chromagnon is a color picker that lives in Chrome's side panel. Pick any pixel on your screen, copy it as HEX, RGB, HSL or OKLCH, save colors into palettes, and check WCAG contrast.
@@ -61,31 +61,31 @@ The repo has no license, so the description doesn't call it open source.
 
 ## Privacy practices tab
 
-**Single purpose**
+### Single purpose
 
 ```text
 Chromagnon is a color picker. It lets users pick a color from anywhere on screen with Chrome's built-in eyedropper, then use that color: copy it as HEX, RGB, HSL or OKLCH, save it to a palette, or check its contrast against another color.
 ```
 
-**sidePanel**
+### sidePanel
 
 ```text
 Chromagnon's entire interface is a side panel, opened by clicking the toolbar icon. A side panel is used instead of a popup because a popup can close when the eyedropper takes focus, which would lose the user's pick.
 ```
 
-**storage**
+### storage
 
 ```text
 Saves the user's settings (copy format and keyboard shortcut), their last 24 picked colors, their palettes, and the two colors in the contrast checker, using chrome.storage.local. The side panel and the content script share this data, so a color picked with the on-page shortcut appears in the open panel. Nothing is synced or sent off the device.
 ```
 
-**clipboardWrite**
+### clipboardWrite
 
 ```text
 Picking a color copies it to the clipboard in the user's chosen format. When the pick is made with the on-page shortcut, the page can lose focus while the eyedropper is open, and navigator.clipboard.writeText may then be refused. clipboardWrite lets the document.execCommand("copy") fallback succeed in that case. The extension never reads the clipboard.
 ```
 
-**Host permission** (the content script on `<all_urls>`)
+### Host permission (the content script on `<all_urls>`)
 
 ```text
 The content script provides the optional keyboard shortcut (Alt+Shift+C by default) that picks a color on any page without opening the side panel. Chrome's EyeDropper API only opens in direct response to a user gesture, and chrome.commands shortcuts handled in the background service worker don't count as one, so the key press must be heard by a script in the page itself. The script only compares key presses with the user's shortcut. It doesn't read page content, doesn't record or transmit keystrokes, and makes no network requests. On a match it opens the eyedropper, copies the color, and shows a small confirmation in a closed shadow root so the page isn't affected. Users can turn the shortcut off in Settings.
@@ -94,6 +94,7 @@ The content script provides the optional keyboard shortcut (Alt+Shift+C by defau
 **Remote code:** "No, I am not using remote code." All JavaScript ships in the zip.
 
 **Data usage:** tick none of the data types, and tick all three certifications.
+
 - Not "User activity": the content script sees key presses but never stores or sends them.
 - Not "Website content": a picked color is a single pixel value that stays on the device.
 
@@ -105,7 +106,7 @@ Broad host access usually triggers an in-depth review, so expect the first revie
 
 Leave username and password blank. There's no account or login.
 
-**Additional instructions**
+### Additional instructions
 
 ```text
 No account, login or setup is needed, and the extension makes no network requests.
@@ -172,7 +173,7 @@ The store wants 1280×800 (up to five), full bleed, showing the real extension.
    osascript -e 'tell application "Google Chrome" to set bounds of front window to {0, 40, 1280, 840}'
    ```
 
-5. Press ⌘⇧4, then Space, then ⌥-click the window to capture it without a shadow. Retina captures come out at 2560×1600, so scale them down: `sips -Z 1280 file.png`.
+5. Press ⌘⇧4, then Space, then ⌥-click the window to capture it without a shadow. Retina captures come out at 2560×1600, so scale them down: `sips -Z 1280 file.png`. macOS leaves the window's rounded corners transparent; the store wants square corners, so fill them before scaling (the shots here had the corners filled from neighboring pixels).
 
 Suggested set: Pick tab just after a pick; the on-page "Copied" message from the shortcut; Palettes; Contrast; one tab in dark theme.
 
