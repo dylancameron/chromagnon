@@ -41,6 +41,7 @@ src/hooks/             useStorageItem, useSettings, useTheme, useEyeDropper
 src/lib/               React-free logic: color, contrast, palettes, shortcut, history, storage, clipboard, eye-dropper, page-toast, theme
 src/types/             EyeDropper typings (not in lib.dom yet)
 src/assets/icon.svg    source for public/icon/*.png
+store/                 Chrome Web Store listing copy, test instructions, promo tile, screenshots
 ```
 
 ### How a pick flows
@@ -99,6 +100,7 @@ Every `storage.local` item is defined in `src/lib/storage.ts`, so look there fir
 - **New tab:** add it to `TABS` in `app.tsx`, with a `TabsTrigger` and a `TabsContent`.
 - **Icon change:** edit `src/assets/icon.svg` and re-export PNGs at 16, 32, 48, 96 and 128 px into `public/icon/`. There's no export script in the repo; any SVG rasterizer works, e.g. `rsvg-convert -w 128 -h 128`. Then mirror the shape in `src/components/logo.tsx` (the path, plus the `EYE` and `REST` constants), which redraws the icon with a pupil that follows the pointer.
 - **Release:** bump `version` in `package.json`. WXT writes it to the manifest, and the Settings footer reads it from there. Then run `pnpm test && pnpm compile && pnpm zip` and upload the zip from `.output/`.
+- **Store listing and privacy policy:** `store/README.md` holds the dashboard text (description, permission justifications, test instructions), and `PRIVACY.md` is the linked privacy policy. Update both when features, permissions or stored data change, because reviewers compare them against the code. The privacy answers depend on the extension making no network requests.
 
 ## Verifying UI changes
 

@@ -37,6 +37,8 @@ Unit tests cover `src/lib` only. UI changes are checked by hand in `pnpm dev`. [
 2. Run `pnpm test && pnpm compile && pnpm zip`.
 3. Upload the zip from `.output/` to the Chrome Web Store.
 
+The store listing text, test instructions and images live in [store/](store/README.md).
+
 ## How it fits together
 
 ```text
@@ -72,6 +74,10 @@ Permissions:
 - `sidePanel` for the side panel.
 - `clipboardWrite` so the copy fallback works without a fresh click.
 - A content script on all sites for the pick shortcut. It only listens for that one key combination.
+
+## Privacy
+
+Chromagnon doesn't collect or send any data. Everything stays in local storage on your device. See [PRIVACY.md](PRIVACY.md).
 
 ## Support
 
