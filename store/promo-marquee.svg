@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560">
+	<rect width="1400" height="560" fill="#2742d6"/>
+	<!-- Same scene as promo-small.svg, widened: the rock eyeing a palette. -->
+	<g transform="translate(136 30) scale(3.9)">
+		<path d="M18 74C12 46 38 22 68 22s48 22 44 50-26 36-52 34-38-10-42-32Z" fill="#e5512f"/>
+		<circle cx="70" cy="60" r="20" fill="#fff8ec"/>
+		<circle cx="77.8" cy="58.5" r="10" fill="#17131f"/>
+	</g>
+	<g>
+		<rect x="653" y="146" width="120" height="120" rx="28" fill="#f2b134"/>
+		<rect x="801" y="146" width="120" height="120" rx="28" fill="#f28cb1"/>
+		<rect x="949" y="146" width="120" height="120" rx="28" fill="#9cc5a1"/>
+		<rect x="1097" y="146" width="120" height="120" rx="28" fill="#fff8ec"/>
+		<rect x="653" y="294" width="120" height="120" rx="28" fill="#17131f"/>
+		<rect x="801" y="294" width="120" height="120" rx="28" fill="#1f8a8a"/>
+		<rect x="949" y="294" width="120" height="120" rx="28" fill="#e5512f"/>
+		<rect x="1097" y="294" width="120" height="120" rx="28" fill="#c9b8ff"/>
+		<rect x="640" y="133" width="146" height="146" rx="40" fill="none" stroke="#fff8ec" stroke-width="7"/>
+	</g>
+</svg>

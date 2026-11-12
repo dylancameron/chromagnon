@@ -5,6 +5,7 @@ Everything the Chrome Web Store dashboard asks for, so the listing can be rebuil
 | File | What it is |
 | --- | --- |
 | `promo-small.png` | Small promo tile, 440×280. Rendered from `promo-small.svg` (see below). |
+| `promo-marquee.png` | Marquee promo tile, 1400×560. Optional; only used if the store features Chromagnon in its homepage carousel. Rendered from `promo-marquee.svg`. |
 | `screenshots/` | Listing screenshots, 1280×800, numbered in upload order. The first is the one the store shows largest. |
 | `demo.html` | A colorful page to pick from in screenshots. It's our own artwork, so the listing doesn't show anyone else's site. |
 
@@ -160,10 +161,12 @@ The store wants 1280×800 (up to five), full bleed, showing the real extension.
 
 Suggested set: Pick tab just after a pick; the on-page "Copied" message from the shortcut; Palettes; Contrast; one tab in dark theme.
 
-## Regenerating the promo tile
+## Regenerating the promo tiles
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
   --force-device-scale-factor=1 --window-size=440,280 \
   --screenshot="$PWD/store/promo-small.png" "file://$PWD/store/promo-small.svg"
 ```
+
+For the marquee, use `--window-size=1400,560` and the `promo-marquee` file names.
